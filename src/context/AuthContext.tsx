@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext } from "react";
 import { ApiResponse, AuthContextType, LoginProps } from "../lib/types";
 import axios from "axios";
 
@@ -7,7 +7,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const login = async (data: LoginProps) => {
         try {
-            const res = await axios.post<ApiResponse<void>>(
+            await axios.post<ApiResponse<void>>(
                 `${import.meta.env.VITE_BACKEND_URL}/auth/login_admin`,
                 data
             )
